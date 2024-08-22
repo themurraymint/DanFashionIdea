@@ -3,78 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Chillida Inspired Fashion Gallery</title>
+    <title>Plant-Inspired Fashion</title>
     <style>
-        /* Keep the existing styles */
-        
-        /* Add this to ensure content is visible */
-        body * {
-            display: block;
+        body {
+            background-image: url('https://source.unsplash.com/random/1920x1080/?cactus');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            padding: 15px;
+        }
+
+        h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <div id="debug"></div>
     <div class="container">
-        <header class="header">
-            <h1>Eduardo Chillida Inspired Fashion Gallery</h1>
-        </header>
-        
-        <img src="main-image.jpg" alt="Main Fashion Image" class="main-image">
-        
-        <div class="gallery-item">
-            <img src="fashion-1.jpg" alt="Fashion Item 1" class="gallery-image">
-            <div class="vote-buttons">
-                <button class="vote-button upvote">Upvote</button>
-                <button class="vote-button downvote">Downvote</button>
-            </div>
-            <div class="description">
-                <h3>Fashion Item 1</h3>
-                <p>This piece is inspired by Eduardo Chillida's sculptural forms, featuring bold geometric shapes and a monochromatic color palette.</p>
-            </div>
-            <div class="comment-section">
-                <textarea class="comment-input" placeholder="Leave a comment..."></textarea>
-                <button class="comment-button">Post Comment</button>
-            </div>
-        </div>
-        
-        <!-- Add more gallery items as needed -->
+        <h1>Plant-Inspired Fashion</h1>
+        <div class="gallery" id="gallery"></div>
     </div>
 
     <script>
-        function debugLog(message) {
-            console.log(message);
-            document.getElementById('debug').innerHTML += message + '<br>';
+        const galleryItemsData = [
+            { title: "Cactus Sneakers", description: "Comfortable and stylish", price: "£72" },
+            { title: "Succulent Loafers", description: "Classic with a green twist", price: "£72" },
+            { title: "Aloe Vera Boots", description: "Rugged and durable", price: "£132" }
+        ];
+
+        const plantImages = [
+            "https://source.unsplash.com/random/300x200/?cactus",
+            "https://source.unsplash.com/random/300x200/?succulent",
+            "https://source.unsplash.com/random/300x200/?aloe"
+        ];
+
+        function createGalleryItem(item, index) {
+            return `
+                <div class="gallery-item">
+                    <img src="${plantImages[index]}" alt="${item.title}" class="gallery-image">
+                    <div class="item-details">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <span class="price">${item.price}</span>
+                    </div>
+                </div>
+            `;
         }
 
-        debugLog('Script started');
-
-        try {
-            // Add JavaScript for handling upvotes, downvotes, and comments
-            document.querySelectorAll('.vote-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    // Implement voting logic here
-                    debugLog('Vote button clicked');
-                    alert('Vote recorded!');
-                });
+        function renderGallery() {
+            const galleryElement = document.getElementById('gallery');
+            galleryItemsData.forEach((item, index) => {
+                galleryElement.innerHTML += createGalleryItem(item, index);
             });
-
-            document.querySelectorAll('.comment-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const commentInput = this.previousElementSibling;
-                    if (commentInput.value.trim() !== '') {
-                        // Implement comment posting logic here
-                        debugLog('Comment posted: ' + commentInput.value);
-                        alert('Comment posted: ' + commentInput.value);
-                        commentInput.value = '';
-                    }
-                });
-            });
-
-            debugLog('Script completed successfully');
-        } catch (error) {
-            debugLog('Error: ' + error.message);
         }
-    </script>
-</body>
-</html>
