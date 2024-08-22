@@ -1,38 +1,66 @@
-  <h2>👮‍♀️ Fashion Policia 👮‍♀️</h2>
+
+        <h2 style="text-align: center;">👮‍♀️ Fashion Policia 👮‍♀️</h2>
         <div class="fashion-policia">
             <div class="image-container">
-                <img src="https://source.unsplash.com/random/400x300/?fashion" alt="Random Fashion Image" class="fashion-image">
+                <img src="https://source.unsplash.com/random/300x200/?fashion" alt="Random Fashion Image" class="fashion-image">
             </div>
+            <p class="image-description">Famous Person in London, August 2024 .</p>
             <div class="vote-buttons">
                 <button class="vote-button upvote">👍 Upvote</button>
                 <button class="vote-button downvote">👎 Downvote</button>
+            </div>
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <textarea class="comment-input" placeholder="Leave a comment..."></textarea>
+                <button class="comment-submit">Submit</button>
+                <div class="comments-list"></div>
             </div>
         </div>
 
         <style>
             .fashion-policia {
-                margin-top: 20px;
+                max-width: 500px;
+                margin: 20px auto;
                 text-align: center;
             }
             .image-container {
-                width: 100%;
-                height: 300px;
+                width: 300px;
+                height: 200px;
                 overflow-y: scroll;
-                margin-bottom: 10px;
+                margin: 0 auto 10px;
             }
             .fashion-image {
                 width: 100%;
                 height: auto;
             }
+            .image-description {
+                margin-bottom: 10px;
+            }
             .vote-buttons {
                 display: flex;
                 justify-content: center;
                 gap: 10px;
+                margin-bottom: 20px;
             }
             .vote-button {
                 padding: 10px 20px;
                 font-size: 16px;
                 cursor: pointer;
+            }
+            .comments-section {
+                text-align: left;
+            }
+            .comment-input {
+                width: 100%;
+                height: 60px;
+                margin-bottom: 10px;
+            }
+            .comment-submit {
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            .comments-list {
+                margin-top: 20px;
             }
         </style>
 
@@ -40,15 +68,27 @@
             function loadNewImage() {
                 const imageContainer = document.querySelector('.image-container');
                 const newImage = document.createElement('img');
-                newImage.src = `https://source.unsplash.com/random/400x300/?fashion&_=${new Date().getTime()}`;
+                newImage.src = `https://source.unsplash.com/random/300x200/?fashion&_=${new Date().getTime()}`;
                 newImage.alt = "Random Fashion Image";
                 newImage.className = "fashion-image";
+                imageContainer.innerHTML = '';
                 imageContainer.appendChild(newImage);
             }
 
             document.querySelector('.image-container').addEventListener('scroll', function() {
                 if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
                     loadNewImage();
+                }
+            });
+
+            document.querySelector('.comment-submit').addEventListener('click', function() {
+                const commentInput = document.querySelector('.comment-input');
+                const commentsList = document.querySelector('.comments-list');
+                if (commentInput.value.trim() !== '') {
+                    const commentElement = document.createElement('p');
+                    commentElement.textContent = commentInput.value;
+                    commentsList.appendChild(commentElement);
+                    commentInput.value = '';
                 }
             });
 
