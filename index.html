@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Chillida Inspired Fashion Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .main-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .vote-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .vote-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .vote-button:hover {
+            background-color: #555;
+        }
+        .description {
+            margin-bottom: 20px;
+        }
+        .comment-section {
+            margin-top: 20px;
+        }
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .comment-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Eduardo Chillida Inspired Fashion Gallery</h1>
+        </header>
+        
+        <img src="main-image.jpg" alt="Main Fashion Image" class="main-image">
+        
+        <div class="gallery-item">
+            <img src="fashion-1.jpg" alt="Fashion Item 1" class="gallery-image">
+            <div class="vote-buttons">
+                <button class="vote-button upvote">Upvote</button>
+                <button class="vote-button downvote">Downvote</button>
+            </div>
+            <div class="description">
+                <h3>Fashion Item 1</h3>
+                <p>This piece is inspired by Eduardo Chillida's sculptural forms, featuring bold geometric shapes and a monochromatic color palette.</p>
+            </div>
+            <div class="comment-section">
+                <textarea class="comment-input" placeholder="Leave a comment..."></textarea>
+                <button class="comment-button">Post Comment</button>
+            </div>
+        </div>
+        
+        <div class="gallery-item">
+            <img src="fashion-2.jpg" alt="Fashion Item 2" class="gallery-image">
+            <div class="vote-buttons">
+                <button class="vote-button upvote">Upvote</button>
+                <button class="vote-button downvote">Downvote</button>
+            </div>
+            <div class="description">
+                <h3>Fashion Item 2</h3>
+                <p>Drawing inspiration from Chillida's use of negative space, this design incorporates cut-outs and layering to create a dynamic silhouette.</p>
+            </div>
+            <div class="comment-section">
+                <textarea class="comment-input" placeholder="Leave a comment..."></textarea>
+                <button class="comment-button">Post Comment</button>
+            </div>
+        </div>
+        
+        <!-- Add more gallery items as needed -->
+    </div>
+
+    <script>
+        // Add JavaScript for handling upvotes, downvotes, and comments
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Implement voting logic here
+                alert('Vote recorded!');
+            });
+        });
+
+        document.querySelectorAll('.comment-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const commentInput = this.previousElementSibling;
+                if (commentInput.value.trim() !== '') {
+                    // Implement comment posting logic here
+                    alert('Comment posted: ' + commentInput.value);
+                    commentInput.value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
