@@ -1,67 +1,80 @@
-<script>
-    const fruitImages = [
-        'https://source.unsplash.com/random/300x300/?fruit=1',
-        'https://source.unsplash.com/random/300x300/?fruit=2',
-        'https://source.unsplash.com/random/300x300/?fruit=3',
-        'https://source.unsplash.com/random/300x300/?fruit=4',
-        'https://source.unsplash.com/random/300x300/?fruit=5'
-    ];
-
-    const galleryItems = [
-        { title: 'Design 1', description: 'Inspired by Chillida\'s geometric forms' },
-        { title: 'Design 2', description: 'Echoing the sculptor\'s use of negative space' },
-        { title: 'Design 3', description: 'A nod to Chillida\'s monumental scale' },
-        { title: 'Design 4', description: 'Reflecting the artist\'s exploration of material' },
-        { title: 'Design 5', description: 'Capturing the essence of Basque modernism' }
-    ];
-
-    function getRandomVotes() {
-        return Math.floor(Math.random() * 100);
-    }
-
-    function createGalleryItem(item, index) {
-        const upvotes = getRandomVotes();
-        const downvotes = getRandomVotes();
-
-        return `
-            <div class="gallery-item">
-                <img src="${fruitImages[index]}" alt="${item.title}" class="gallery-image">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-                <div class="vote-buttons">
-                    <button class="vote-button">👍 ${upvotes}</button>
-                    <button class="vote-button">👎 ${downvotes}</button>
-                </div>
-                <div class="comment-section">
-                    <textarea class="comment-input" placeholder="Leave a comment"></textarea>
-                    <button class="comment-button">Submit</button>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Chillida Inspired Fashion Gallery</title>
+    <style>
+        /* Keep the existing styles */
+        
+        /* Add this to ensure content is visible */
+        body * {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="debug"></div>
+    <div class="container">
+        <header class="header">
+            <h1>Eduardo Chillida Inspired Fashion Gallery</h1>
+        </header>
+        
+        <img src="main-image.jpg" alt="Main Fashion Image" class="main-image">
+        
+        <div class="gallery-item">
+            <img src="fashion-1.jpg" alt="Fashion Item 1" class="gallery-image">
+            <div class="vote-buttons">
+                <button class="vote-button upvote">Upvote</button>
+                <button class="vote-button downvote">Downvote</button>
             </div>
-        `;
-    }
+            <div class="description">
+                <h3>Fashion Item 1</h3>
+                <p>This piece is inspired by Eduardo Chillida's sculptural forms, featuring bold geometric shapes and a monochromatic color palette.</p>
+            </div>
+            <div class="comment-section">
+                <textarea class="comment-input" placeholder="Leave a comment..."></textarea>
+                <button class="comment-button">Post Comment</button>
+            </div>
+        </div>
+        
+        <!-- Add more gallery items as needed -->
+    </div>
 
-    const gallery = document.querySelector('.gallery');
-    galleryItems.forEach((item, index) => {
-        gallery.innerHTML += createGalleryItem(item, index);
-    });
-</script>
+    <script>
+        function debugLog(message) {
+            console.log(message);
+            document.getElementById('debug').innerHTML += message + '<br>';
+        }
 
-<style>
-    body {
-        background-image: url('https://source.unsplash.com/random/1920x1080/?cactus');
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-    }
+        debugLog('Script started');
 
-    .container {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-    }
+        try {
+            // Add JavaScript for handling upvotes, downvotes, and comments
+            document.querySelectorAll('.vote-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Implement voting logic here
+                    debugLog('Vote button clicked');
+                    alert('Vote recorded!');
+                });
+            });
 
-    h1 {
-        font-weight: bold;
-        color: black;
-    }
-</style>
+            document.querySelectorAll('.comment-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const commentInput = this.previousElementSibling;
+                    if (commentInput.value.trim() !== '') {
+                        // Implement comment posting logic here
+                        debugLog('Comment posted: ' + commentInput.value);
+                        alert('Comment posted: ' + commentInput.value);
+                        commentInput.value = '';
+                    }
+                });
+            });
+
+            debugLog('Script completed successfully');
+        } catch (error) {
+            debugLog('Error: ' + error.message);
+        }
+    </script>
+</body>
+</html>
